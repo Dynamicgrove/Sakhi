@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Best Friend Day, Mishika 💛</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Lora:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf6e3;
+      --warm: #f5e6c8;
+      --gold: #c9952a;
+      --amber: #e8a020;
+      --brown: #5c3d1e;
+      --ink: #2d1f0e;
+      --soft: #8b6914;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: 'Lora', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Paper texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,140,60,0.07) 28px),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Decorative corner dots */
+    body::after {
+      content: '· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·';
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      color: rgba(201,149,42,0.2);
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-align: center;
+      padding: 6px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 32px 100px;
+    }
+
+    /* ── HEADER ── */
+    .stamp {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 8vw, 4.2rem);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.15;
+      color: var(--brown);
+      margin: 18px 0 8px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.45s;
+    }
+
+    .main-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--soft);
+      text-align: center;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.65s;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 40px 0;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.85s;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+    }
+    .divider span {
+      font-size: 18px;
+      color: var(--amber);
+    }
+
+    /* ── TYPEWRITER SECTION ── */
+    .typewriter-box {
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(201,149,42,0.25);
+      border-radius: 4px;
+      padding: 36px 40px;
+      margin-bottom: 44px;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 1.1s;
+      box-shadow: 0 2px 20px rgba(140,100,20,0.07);
+    }
+
+    .typewriter-box::before {
+      content: attr(data-label);
+      position: absolute;
+      top: -11px;
+      left: 28px;
+      background: var(--cream);
+      padding: 0 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--amber);
+      text-transform: uppercase;
+    }
+
+    .typewriter-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--brown);
+      white-space: pre-wrap;
+      min-height: 1.9em;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--amber);
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* ── NOTES CARDS ── */
+    .notes-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.4s;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 44px;
+    }
+
+    @media (max-width: 520px) {
+      .notes-grid { grid-template-columns: 1fr; }
+      .typewriter-box { padding: 28px 22px; }
+    }
+
+    .note-card {
+      border-left: 3px solid var(--amber);
+      padding: 20px 22px;
+      background: rgba(255,255,255,0.45);
+      position: relative;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .note-card:nth-child(1) { animation: fadeUp 0.6s ease forwards 1.6s; }
+    .note-card:nth-child(2) { animation: fadeUp 0.6s ease forwards 1.75s; }
+    .note-card:nth-child(3) { animation: fadeUp 0.6s ease forwards 1.9s; }
+    .note-card:nth-child(4) { animation: fadeUp 0.6s ease forwards 2.05s; }
+    .note-card:nth-child(5) { animation: fadeUp 0.6s ease forwards 2.2s; }
+    .note-card:nth-child(6) { animation: fadeUp 0.6s ease forwards 2.35s; }
+
+    .note-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--amber);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .note-card p {
+      font-family: 'Lora', serif;
+      font-size: 0.93rem;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    /* ── BIG QUOTE ── */
+    .big-quote {
+      text-align: center;
+      padding: 48px 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 2.6s;
+    }
+
+    .big-quote blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+      color: var(--brown);
+      line-height: 1.6;
+      max-width: 560px;
+      margin: 0 auto 20px;
+    }
+
+    .big-quote cite {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── FOOTER WISH ── */
+    .footer-wish {
+      margin-top: 60px;
+      text-align: center;
+      border-top: 1px dashed rgba(201,149,42,0.3);
+      padding-top: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 3.0s;
+    }
+
+    .footer-wish h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      color: var(--brown);
+      margin-bottom: 12px;
+    }
+
+    .footer-wish p {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: var(--soft);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 440px;
+      margin: 0 auto 28px;
+    }
+
+    .date-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: rgba(140,100,40,0.5);
+      text-transform: uppercase;
+    }
+
+    /* ── FLOATING GLYPHS ── */
+    .glyph {
+      position: fixed;
+      font-family: 'DM Mono', monospace;
+      color: rgba(201,149,42,0.12);
+      font-size: 13px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      animation: floatDrift linear infinite;
+    }
+
+    @keyframes floatDrift {
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating background glyphs -->
+<script>
+  const chars = ['♡','✦','✧','·','★','◇','❋','✿'];
+  for (let i = 0; i < 18; i++) {
+    const g = document.createElement('div');
+    g.className = 'glyph';
+    g.textContent = chars[Math.floor(Math.random() * chars.length)];
+    g.style.left = Math.random() * 100 + 'vw';
+    g.style.animationDuration = (12 + Math.random() * 18) + 's';
+    g.style.animationDelay = (Math.random() * 20) + 's';
+    g.style.fontSize = (10 + Math.random() * 12) + 'px';
+    document.body.appendChild(g);
+  }
+</script>
+
+<div class="page">
+
+  <p class="stamp">08 · June · 2026 &nbsp;—&nbsp; International Best Friend Day</p>
+
+  <h1 class="main-title">
+    Happy Best Friend Day,<br><em>Mishika</em> 💛
+  </h1>
+
+  <p class="subtitle">A letter from the heart — just for you.</p>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- Typewriter box -->
+  <div class="typewriter-box" data-label="Opening Note">
+    <div class="typewriter-text" id="tw"></div><span class="cursor"></span>
+  </div>
+
+  <!-- Notes grid -->
+  <p class="notes-label">✦ &nbsp;Things I want you to know</p>
+
+  <div class="notes-grid">
+    <div class="note-card">
+      <span class="note-number">01 ——</span>
+      <p>You are the kind of person who makes every room feel warmer just by being in it. That's a rare gift, Mishika.</p>
+    </div>
+    <div class="note-card">
+      <span class="note-number">02 ——</span>
+      <p>Your sweetness is not weakness — it is your superpower. The world needs more people with a heart like yours.</p>
+    </div>
+    <div class="note-card">
+      <span class="note-number">03 ——</span>
+      <p>Every laugh we've shared, every little moment — I keep them all like treasures. Thank you for being my person.</p>
+    </div>
+    <div class="note-card">
+      <span class="note-number">04 ——</span>
+      <p>On my hard days, just knowing you exist makes things lighter. You are my calm in the middle of every storm.</p>
+    </div>
+    <div class="note-card">
+      <span class="note-number">05 ——</span>
+      <p>You never judge, you always listen, and you always show up. That kind of friendship is worth more than gold.</p>
+    </div>
+    <div class="note-card">
+      <span class="note-number">06 ——</span>
+      <p>I don't say it enough — but you are genuinely the best part of my life. I'm lucky every single day.</p>
+    </div>
+  </div>
+
+  <!-- Big quote -->
+  <div class="big-quote">
+    <div class="divider"><span>◇</span></div>
+    <blockquote>
+      "A best friend is someone who knows all your stories, loves you anyway, and chooses to stay — not because they have to, but because they want to."
+    </blockquote>
+    <cite>— That's you, Mishika. Always you.</cite>
+  </div>
+
+  <!-- Footer wish -->
+  <div class="footer-wish">
+    <h2>Here's to us, forever 💛</h2>
+    <p>
+      May today remind you how deeply valued and deeply loved you are —
+      not just today, but every single day. You deserve every good thing.
+    </p>
+    <div class="date-tag">Best Friend Day · 08.06.2026</div>
+  </div>
+
+</div>
+
+<script>
+  // Typewriter effect
+  const message =
+`Hey Mishika,
+
+I don't know if words are ever enough,
+but today — on Best Friend Day —
+I want you to know that you are
+the sweetest, kindest, and most
+wonderful person in my world.
+
+You are not just my best friend.
+You are the best part of my story.`;
+
+  const el = document.getElementById('tw');
+  let i = 0;
+  function type() {
+    if (i < message.length) {
+      el.textContent += message[i++];
+      setTimeout(type, i < 10 ? 80 : 28 + Math.random() * 40);
+    }
+  }
+  setTimeout(type, 1800);
+</script>
+
+</body>
+</html>
